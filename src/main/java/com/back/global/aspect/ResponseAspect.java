@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class ResponseAspect {
+
     private final HttpServletResponse response;
 
     public ResponseAspect(HttpServletResponse response) {
@@ -39,3 +40,4 @@ public class ResponseAspect {
         return proceed;
     }
 }
+

@@ -1,6 +1,5 @@
 package com.back.domain.member.member.entity;
 
-
 import com.back.global.jpa.entity.BaseEntity;
 import jakarta.persistence.Entity;
 import lombok.Getter;
@@ -20,7 +19,7 @@ public class Member extends BaseEntity {
         this.nickname = nickname;
     }
 
-    public String getName(){
+    public String getName() {
         return nickname;
     }
 }

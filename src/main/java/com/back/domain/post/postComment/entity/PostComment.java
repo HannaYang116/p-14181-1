@@ -8,15 +8,13 @@ import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import static jakarta.persistence.FetchType.LAZY;
-
 @Entity
 @Getter
 @NoArgsConstructor
 public class PostComment extends BaseEntity {
     @ManyToOne
     private Member author;
-    @ManyToOne(fetch = LAZY)
+    @ManyToOne
     private Post post;
     private String content;
 
