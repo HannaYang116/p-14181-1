@@ -18,11 +18,12 @@ public class MemberService {
     }
 
     public Member join(String username, String password, String nickname) {
-        memberRepository.findByUsername(username)
-                .ifPresent(_member ->{
-                    throw new ServiceException("409-1",
-                            "이미 존재하는 아이디입니다.");
+        memberRepository
+                .findByUsername(username)
+                .ifPresent(_member -> {
+                    throw new ServiceException("409-1", "이미 존재하는 아이디입니다.");
                 });
+
         Member member = new Member(username, password, nickname);
 
         return memberRepository.save(member);

@@ -11,7 +11,10 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1/members")
@@ -20,7 +23,8 @@ import org.springframework.web.bind.annotation.*;
 public class ApiV1MemberController {
     private final MemberService memberService;
 
-    record MemberjoinReqBody(
+
+    record MemberJoinReqBody(
             @NotBlank
             @Size(min = 2, max = 30)
             String username,
@@ -30,14 +34,13 @@ public class ApiV1MemberController {
             @NotBlank
             @Size(min = 2, max = 30)
             String nickname
-    ){}
+    ) {
+    }
 
     @PostMapping
     public RsData<MemberDto> join(
-            @Valid
-            @RequestBody
-            MemberjoinReqBody reqBody
-    ){
+            @Valid @RequestBody MemberJoinReqBody reqBody
+    ) {
         Member member = memberService.join(
                 reqBody.username(),
                 reqBody.password(),
@@ -50,6 +53,7 @@ public class ApiV1MemberController {
                 new MemberDto(member)
         );
     }
+
 
     record MemberLoginReqBody(
             @NotBlank
